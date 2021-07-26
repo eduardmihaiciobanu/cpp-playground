@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 void printOddOrEven(int number)
 {
 	if (number % 2 == 0)
@@ -40,18 +42,40 @@ int main(int argc, char *argv[])
 	// --------------- start
 
 	// Get the first argument
-	std::string argumentAsString = argv[1];
+	string argumentAsString = argv[1];
 	const char* argumentAsCharArray = argumentAsString.c_str();
 
 	//number = argv[1]; // No
 	//should use atoi?
 	// or std::stoi?
 
-	std::cout << argumentAsString << std::endl; // i think this should be removed
+	// std::cout << argumentAsString << std::endl; // i think this should be removed
 
+
+	
+	// Verify if the parameter is a number
+	bool isParamNumber = true;
+
+	for (int i = 1;  i < argumentAsString.length(); ++i) {
+		if (isdigit(argumentAsString.at(i)) == 0) {       //Verify if the argument contain chars
+			isParamNumber = false;    
+			}
+		}
+	
+	
+	if ( isParamNumber == false ) {
+		cout << "NAN" << endl;					// Verify if the argument is not a number
+		}
+	else {
+		number = stoi(argumentAsString);
+		printOddOrEven(number);
+		}
+
+	
+	
+	// If the parameter is not a number print: "NAN" (Not a number) else print "ODD" or "EVEN"
 	// --------------- stop
 
-	printOddOrEven(number);
 
 	return 0;
 }
